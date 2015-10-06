@@ -32,7 +32,7 @@ Plugin options:
 ```js
 gulp.task('default', function () {
   return gulp.src(['src/**/*.php'])
-  	.pipe(phplint()
+  	.pipe(phplint())
     .pipe(phplint.reporter());
 });
 ```
@@ -42,9 +42,10 @@ gulp.task('default', function () {
 ```js
 gulp.task('default', function () {
   return gulp.src(['src/**/*.php'])
-  	.pipe(phplint()
+  	.pipe(phplint())
     .pipe(phplint.reporter('fail'));
-});```
+});
+```
 
 ## License
 
