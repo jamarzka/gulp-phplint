@@ -25,13 +25,9 @@ module.exports = function() {
 
       this.emit('error', new gutil.PluginError('gulp-phplint', message));
 
-      callback();
-
-      return;
+      return callback(null, file);
     }
 
-    this.push(file);
-
-    callback();
+    return callback(null, file);
   });
 };

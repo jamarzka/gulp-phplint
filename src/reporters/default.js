@@ -26,8 +26,6 @@ module.exports = function() {
       gutil.log(message);
     }
 
-    this.push(file);
-
-    callback();
+    return callback(null, file);
   });
 };

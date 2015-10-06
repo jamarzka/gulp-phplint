@@ -12,13 +12,8 @@ var execFile = require('child_process').execFile;
 
 var phplintPlugin = function(bin) {
   return through.obj(function(file, enc, callback) {
-    var stream = this;
-
     if (file.isNull()) {
-      stream.push(file);
-      callback();
-
-      return;
+      return callback(null, file);
     }
 
     // Run the linter
@@ -44,9 +39,7 @@ var phplintPlugin = function(bin) {
 
       file.phplintReport = report;
 
-      stream.push(file);
-
-      callback();
+      return callback(null, file);
     });
   });
 };
