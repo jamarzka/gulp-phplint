@@ -6,8 +6,8 @@ var execFile = require('child_process').execFile;
 /**
  * PHP linter Plugin
  *
- * @param {Object} bin.
- * @returns {String} Shell command with all needed flags.
+ * @param {String} bin.
+ * @returns {Stream}
  */
 
 var phplintPlugin = function(bin) {

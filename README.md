@@ -1,6 +1,6 @@
 # gulp-phplint
 
-> Gulp plugin for running the PHP Linter.
+> Gulp plugin for running the PHP Linter
 
 ## Usage
 
@@ -13,7 +13,7 @@ gulp.task('default', function () {
     // Validate files using PHP Lint
     .pipe(phplint('src/vendor/bin/php'))
 
-    // Log all problems that was found
+    // Log all problems that were found
     .pipe(phplint.reporter());
 });
 ```
