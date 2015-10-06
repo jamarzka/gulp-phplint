@@ -14,7 +14,7 @@ gulp.task('default', function () {
     .pipe(phplint('src/vendor/bin/php'))
 
     // Log all problems that was found
-    .pipe(phplint.reporter('log'));
+    .pipe(phplint.reporter());
 });
 ```
 
