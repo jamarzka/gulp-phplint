@@ -1,0 +1,33 @@
+{
+  "name": "gulp-phplint",
+  "version": "0.1.0",
+  "description": "PHP Lint plugin for Gulp",
+  "license": "MIT",
+  "author": {
+    "name": "Jeremy Marzka",
+    "url": "https://github.com/jamarzka"
+  },
+  "homepage": "https://github.com/jamarzka/gulp-phplint",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jamarzka/gulp-phplint.git"
+  },
+  "main": "src/index.js",
+  "keywords": [
+    "gulpplugin",
+    "php",
+    "lint"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.1",
+    "gulp-util": "^3.0.6",
+    "through2": "^2.0.0"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-jscs": "^3.0.1",
+    "gulp-jshint": "^1.11.2",
+    "jshint": "^2.6.3",
+    "jshint-stylish": "^2.0.1"
+  }
+}
