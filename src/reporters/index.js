@@ -1,7 +1,8 @@
 'use strict';
 
 var failReporter = require('./fail');
-var defaultReporter = require('./default');
+var loadReporter = require('./load');
+var through = require('through2');
 
 /**
  * Gets a reporter
@@ -13,13 +14,18 @@ var defaultReporter = require('./default');
  * @returns {Function}
  */
 module.exports = function(reporter, options) {
-  if (reporter === 'default') {
-    reporter = defaultReporter;
-  } else if (reporter === 'fail') {
-    reporter = failReporter;
+  options = options || {};
+
+  if (reporter === 'fail') {
+    return failReporter(options);
   }
 
-  reporter = reporter || defaultReporter;
+  var reporter = loadReporter(reporter || 'default');
 
-  return reporter(options || {});
+  return through.obj(function(file, enc, callback) {
+
+    reporter(file);
+
+    return callback(null, file);
+  });
 };
