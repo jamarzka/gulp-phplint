@@ -1,7 +1,6 @@
 'use strict';
 
 var gutil = require('gulp-util');
-var through = require('through2');
 var chalk = require('chalk');
 
 /**
@@ -11,21 +10,20 @@ var chalk = require('chalk');
  *
  * @returns {Function}
  */
-module.exports = function() {
-  return through.obj(function(file, enc, callback) {
-    var report = file.phplintReport || {};
+module.exports = function(file) {
 
-    if (report.error) {
-      var message = report.message;
+  var report = file.phplintReport || {};
 
-      if (report.rule) {
-        message = report.rule + ' ' + chalk.magenta(file.path) + ':' +
-          chalk.yellow(report.line) + ' ' + report.message;
-      }
+  if (report.error) {
+    var message = report.message;
 
-      gutil.log(message);
+    if (report.rule) {
+      message = report.rule + ' ' + chalk.magenta(file.path) + ':' +
+        chalk.yellow(report.line) + ' ' + report.message;
     }
 
-    return callback(null, file);
-  });
+    gutil.log(message);
+  }
+
+  return;
 };

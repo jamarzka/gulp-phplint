@@ -47,6 +47,22 @@ gulp.task('default', function () {
 });
 ```
 
+#### Custom
+
+```js
+gulp.task('default', function () {
+  return gulp.src(['src/**/*.php'])
+  	.pipe(phplint())
+    .pipe(phplint.reporter(function(file){
+      var report = file.phplintReport || {};
+
+      if (report.error) {
+        console.log(report.message+' on line '+report.line+' of '+report.filename);
+      }
+    }));
+});
+```
+
 ## License
 
 [MIT](http://opensource.org/licenses/MIT) © Jeremy Marzka
