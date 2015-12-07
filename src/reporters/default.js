@@ -11,7 +11,6 @@ var chalk = require('chalk');
  * @returns {Function}
  */
 module.exports = function(file) {
-
   var report = file.phplintReport || {};
 
   if (report.error) {

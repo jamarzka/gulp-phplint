@@ -1,8 +1,10 @@
 'use strict';
 
-var failReporter = require('./fail');
-var loadReporter = require('./load');
+var gutil = require('gulp-util');
 var through = require('through2');
+
+var failReporter = require('./fail');
+var defaultReporter = require('./default');
 
 /**
  * Gets a reporter
@@ -13,17 +15,21 @@ var through = require('through2');
  * @param {Object} options Custom options object that will be passed to a reporter.
  * @returns {Function}
  */
-module.exports = function(reporter, options) {
-  options = options || {};
+module.exports = function(reporter) {
+  reporter = reporter || defaultReporter;
 
   if (reporter === 'fail') {
-    return failReporter(options);
+    reporter = failReporter;
+  } else if (reporter === 'default') {
+    reporter = defaultReporter;
   }
 
-  var reporter = loadReporter(reporter || 'default');
+  // Check for a valid reporter
+  if (typeof reporter !== 'function') {
+    this.emit('error', new gutil.PluginError('gulp-phplint', 'Invalid reporter'));
+  }
 
   return through.obj(function(file, enc, callback) {
-
     reporter(file);
 
     return callback(null, file);
