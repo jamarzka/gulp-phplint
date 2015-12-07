@@ -12,18 +12,18 @@ var chalk = require('chalk');
  */
 module.exports = function(file) {
 
-    var report = file.phplintReport || {};
+  var report = file.phplintReport || {};
 
-    if (report.error) {
-      var message = report.message;
+  if (report.error) {
+    var message = report.message;
 
-      if (report.rule) {
-        message = report.rule + ' ' + chalk.magenta(file.path) + ':' +
-          chalk.yellow(report.line) + ' ' + report.message;
-      }
-
-      gutil.log(message);
+    if (report.rule) {
+      message = report.rule + ' ' + chalk.magenta(file.path) + ':' +
+        chalk.yellow(report.line) + ' ' + report.message;
     }
 
-    return;
+    gutil.log(message);
+  }
+
+  return;
 };
